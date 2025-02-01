@@ -1,0 +1,363 @@
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+    padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure):where([class]) {
+    margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol,
+  dl
+):where([class]) {
+    margin-block: 0;
+}
+
+:where(dd[class]) {
+    margin-left: 0;
+}
+
+:where(fieldset[class]) {
+    margin-left: 0;
+    padding: 0;
+    border: none;
+
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+    list-style: none;
+}
+
+:where(address[class]) {
+    font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+    --paragraphMarginBottom: 24px;
+
+    margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+    margin-bottom: var(--paragraphMarginBottom);
+}
+
+
+/**
+  Упрощаем работу с изображениями
+ */
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+    font: inherit;
+}
+
+html {
+    /**
+      Пригодится в большинстве ситуаций
+      (когда, например, нужно будет "прижать" футер к низу сайта)
+     */
+    height: 100%;
+}
+
+/**
+  Плавный скролл
+ */
+html,
+:has(:target) {
+    scroll-behavior: smooth;
+}
+
+body {
+    /**
+      Пригодится в большинстве ситуаций
+      (когда, например, нужно будет "прижать" футер к низу сайта)
+     */
+    min-height: 100%;
+    /**
+      Унифицированный интерлиньяж
+     */
+    line-height: 1.5;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+ */
+svg *[fill] { fill: currentColor }
+svg *[stroke] { stroke: currentColor }
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+    transition-property: fill, stroke;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+body {
+    background-color: rgb(0, 0 ,0);
+    color: rgb(245, 245, 245);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.main-block {
+    display: flex;
+    width: min-content;
+    min-height: 80vh;
+    margin-inline: auto;
+    margin-top: 64px;
+    padding-bottom: 32px;
+    column-gap: 28px;
+    align-items: center;
+}
+
+.ig-on-iphone {
+    width: 383px;
+}
+
+.ig-on-iphone-img {
+    width: 100%;
+    height: 578px;
+
+}
+
+
+.ig-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 32px;
+}
+
+.log-in {
+    padding: 32px 32px 28px 32px;
+
+    border: 1px solid rgb(54, 54, 54);
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.input-container {
+    width: 292px;
+}
+
+input {
+    color: rgb(245, 245, 245);
+    width: 100%;
+    line-height: 2.5;
+    font-size: 14px;
+    background-color: rgb(18, 18, 18);
+    border: 1px solid rgb(54, 54, 54);
+    border-radius: 3px;
+    padding-inline: 7px;
+}
+
+input::placeholder {
+    color: rgb(117, 117, 117);
+}
+
+.log-in-button {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    line-height: 1.9;
+    font-weight: 500;
+    color: rgb(245, 245, 245);
+    background-color: #007bfc;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+}
+
+.divider {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(180, 180, 180);
+    margin-bottom: 15px;
+}
+
+.divider-line {
+    display: flex;
+    width: 40%;
+    border: 0;
+    border-bottom: 1px solid rgb(54, 54, 54);
+}
+
+.enter-via-facebook-link::before {
+    content:"";
+    background-image: url("icons/communication.png");
+    width: 52px;
+    height: 52px;
+}
+
+
+
+.enter-via-facebook {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 6px;
+    margin-bottom: 12px;
+}
+
+.enter-via-facebook-link {
+    color: #007bfc;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+
+}
+
+.enter-via-facebook-link:hover {
+    color: rgb(224, 241, 255);
+}
+
+.password-reset {
+    text-align: center;
+}
+
+.password-reset-link {
+    color: rgb(224, 241, 255);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.sign-up {
+    padding: 20px;
+    border: 1px solid rgb(54, 54, 54);
+    margin-top: 10px;
+}
+
+.sign-up-link {
+    color: #007bfc;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.app-download {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.app-download-links {
+    margin-top: 15px;
+    display: flex;
+    column-gap: 10px;
+}
+
+.footer {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 12px;
+    color: rgb(168, 168, 168);
+}
+
+.additional-links-list {
+    display: flex;
+    justify-content: center;
+    column-gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.additional-links-link {
+    font-size: 12px;
+    color: rgb(168, 168, 168);
+    text-decoration: none;
+}
+
+.additional-links-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 877px) {
+    .ig-on-iphone {
+        display: none;
+    }
+}
