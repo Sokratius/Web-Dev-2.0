@@ -1,0 +1,1 @@
+result = (a + b < 4) ? 'big' : 'small';
