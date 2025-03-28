@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Performance</title>
+</head>
+<body>
+    <h1>
+        Student Average Scores
+    </h1>
+    <ul>
+        {% for student in students %}
+            <li>{{ student.name }}: {{student.average }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
