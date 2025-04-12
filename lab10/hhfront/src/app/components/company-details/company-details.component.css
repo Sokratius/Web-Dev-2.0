@@ -1,19 +1,72 @@
-h2,
-h3 {
-  color: navy;
+.company-details {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #fdfdfd;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: Arial, sans-serif;
 }
 
-p {
-  font-size: 16px;
+.company-details h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  color: #333;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.company-details p {
+  margin: 0.3rem 0;
+  color: #555;
 }
 
-li {
-  padding: 8px;
-  margin-bottom: 5px;
-  border-bottom: 1px solid #ccc;
+.company-details strong {
+  color: #000;
+}
+
+.vacancy-list {
+  margin-top: 1.5rem;
+}
+
+.vacancy-list h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  color: #333;
+}
+
+.vacancy-list ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.vacancy-list li {
+  background-color: #f0f0f0;
+  margin-bottom: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.vacancy-list li:hover {
+  background-color: #e0e0e0;
+}
+
+.vacancy-link {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.vacancy-link:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+.no-vacancies {
+  margin-top: 1rem;
+  font-style: italic;
+  color: #888;
 }
